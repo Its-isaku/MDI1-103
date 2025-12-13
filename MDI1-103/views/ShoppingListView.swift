@@ -57,6 +57,11 @@ struct ShoppingListView: View {
 							// Logic to add an item to the shopingList
 							if !newItem.isEmpty {
 								shoppingList.append(newItem)
+								if isSortedAToZ {
+									shoppingList = shoppingList.sorted()
+								} else if isReverse {
+									shoppingList = Array(shoppingList.reversed())
+								}
 								newItem = ""
 							}
 							
@@ -84,7 +89,7 @@ struct ShoppingListView: View {
 							isReverse.toggle()
 						}
 						isSortedAToZ.toggle()
-						shoppingList.sort(by: <)
+						shoppingList = shoppingList.sorted()
 					}
 					
 					Button("Reversed Order") {
@@ -93,7 +98,7 @@ struct ShoppingListView: View {
 							isSortedAToZ.toggle()
 						}
 						isReverse.toggle()
-						shoppingList.sort(by: >)
+						shoppingList = Array(shoppingList.reversed())
 					}
 				} /// END: Menu
 				label : {
